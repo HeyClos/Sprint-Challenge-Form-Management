@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useInput } from "../useInput"
 
 function LoginForm({ errors, touched, isSubmitting }) {
   return (
@@ -42,18 +43,14 @@ const FormikLoginForm = withFormik({
         .post("http://localhost:5000/api/register", values) 
         
         .then(res => {
-          console.log(res); // Data was created successfully and logs to console
-          // I DONT INSERT MY RESPONSE HERE? IT IS INSTEAD RETURNED HERE?
-          // OPTION 1: I WRITE THE TOKEN GIVEN IN INSTRUCTIONS HERE
-          // OPTION 2: I PUT THE TOKEN INTO A VARIABLE AND INSERT IT AFTER MY URL @ LINE 48
-          // OPTION 3: I write the token in AxiosWithAuth?
-          // OPTION 4:
-
+          console.log(res); 
+          // am i using my custom useInput hook in here correctly? Do i need to pass it res?
+          useInput(res);
           resetForm();
           setSubmitting(false);
         })
         .catch(err => {
-          console.log(err); // There was an error creating the data and logs to console
+          console.log(err);
           setSubmitting(false);
         });
     }
