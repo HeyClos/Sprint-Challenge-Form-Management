@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   Route,
-  Router,
-  Link
+  Router
 } from "react-router-dom";
 import Login from "./components/Login";
 import { ProtectedRoute } from "./components/ProtectedRoute"
@@ -18,6 +17,7 @@ function App() {
         <Route path="/login" component={Login} />
       </Router>
       <Form />
+      <FormList />
 
     </div>
   );
