@@ -52,7 +52,7 @@ class App extends React.Component {
     // this.setState({counter: this.state.counter+1 });
 
     // useEffect(() => {fetch}, [this.state.names])
-    if (prevState.names !== this.state.names) {
+    if (prevState.names.length !== this.state.names.length) {
       this.fetchUser();
     }
   }
