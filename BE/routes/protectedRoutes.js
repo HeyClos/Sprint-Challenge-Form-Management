@@ -68,7 +68,7 @@ function protected(req, res, next) {
     jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
         console.log(err);
-        return res.json({
+        return res.status(401).json({
           error: true,
           message: 'You are not authorized to see this data'
         });
@@ -78,7 +78,7 @@ function protected(req, res, next) {
       }
     });
   } else {
-    return res
+    return res.status(400)
       .json({
         error: true,
         message: 'No token provided'
@@ -87,7 +87,7 @@ function protected(req, res, next) {
   }
 }
 
-router.get('/users', protected, function(req, res, next) {
+router.get('/users', function(req, res, next) {
   db('users')
     .select('id', 'username', 'password')
     .then(users => {
@@ -96,7 +96,7 @@ router.get('/users', protected, function(req, res, next) {
     .catch(next);
 });
 
-router.get('/data', protected, function(req, res, next) {
+router.get('/data', function(req, res, next) {
   res.json(data);
 });
 
